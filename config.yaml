@@ -1,0 +1,8 @@
+
+
+data:
+  path: "/users/davidsewell/MLData/cifar-10/"
+  train: "train"
+  test: "test"
+  labels_n: 10
+  labels_path: "trainLabels.csv"
