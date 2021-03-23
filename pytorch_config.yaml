@@ -13,9 +13,6 @@ train:
   random_state: 42
 
 model:
-  type: LRModel
+  type: CNN
   args:
     random_state: 42
-    penalty: "l2"
-    verbose: 0
-    max_iter: 500
