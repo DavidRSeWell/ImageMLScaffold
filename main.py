@@ -2,6 +2,7 @@ import json
 import numpy as np
 
 from ml import data,utils
+from ml.designer import Designer
 
 
 def main(config_path):
@@ -12,13 +13,31 @@ def main(config_path):
     print("----------------------------------------------------------")
     print(json.dumps(config, indent=4, sort_keys=True))
 
-    data_img: data.ImageData = data.ImageData.load_from_config(config_path)
+    designer = Designer(config_path)
+    print("Loading in the data")
 
-    #data_img.display_random_images(n=5)
+    designer.load_data()
 
-    labels = data_img.labels
+    print("Data loaded showing stats")
+    designer.image_data.get_data_stats()
 
-    data_img.get_data_stats()
+    X = designer.transform_data()
+
+    label_dict, y = designer.image_data.transform_labels()
+
+    X_train, X_test, y_train, y_test = designer.create_train_data(X,y)
+
+    print("Training size \n")
+    print(X_train.shape)
+
+    print("Testing size \n")
+    print(X_test.shape)
+
+    print("Training model \n")
+    designer.train(X_train,y_train)
+
+    print("Evaluating the model")
+    print(designer.test(X_test,y_test))
 
     print("Done running main")
 

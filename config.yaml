@@ -6,3 +6,18 @@ data:
   test: "test"
   labels_n: 10
   labels_path: "trainLabels.csv"
+  features:
+    concat: false # true means that we compute each seperately and the concat. False we compose them
+    CV2Features: true
+
+train:
+  split: 0.2 # percentage for testing
+  random_state: 42
+
+model:
+  type: LRModel
+  args:
+    random_state: 42
+    penalty: "l2"
+    verbose: 0
+    max_iter: 500
